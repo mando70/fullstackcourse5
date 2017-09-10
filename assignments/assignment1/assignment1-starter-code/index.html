@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en" ng-app="MealStatusApp">
+  <head>
+    <title>Lunch Checker</title>
+    <script src = "angular.min.js"></script>
+    <script src = "app.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <style>
+      .message { font-size: 1.3em; font-weight: bold; }
+    </style>
+  </head>
+<body>
+   <div class="container">
+      <div ng-controller='MealStatusController'>
+     <h1>Lunch Checker</h1>
+
+         <div class="form-group">
+             <input id="lunch-menu" type="text" ng-model="meal_list"
+             placeholder="list comma separated dishes you usually have for lunch"
+             class="form-control">
+         </div>
+         <div class="form-group">
+             <button ng-click="checkMealStatus()" class="btn btn-default">Check If Too Much </button>
+         </div>
+         <div class="form-group message">
+           <!-- Your message can go here. -->
+             {{meal_status}}
+         </div>
+      </div>
+   </div>
+
+</body>
+</html>

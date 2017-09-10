@@ -1,0 +1,72 @@
+<!doctype html>
+<!--#### Steps for Implementing Assignment Requirements-->
+<!--DONE   1. Declare `ng-app` either on the `html` or the `body` element. Name your app `NarrowItDownApp`.-->
+
+<!--DONE   2. Create `app.js` in your project and declare an Angular module to match your `ng-app`declaration.-->
+
+<!--DONE   3. Declare and create a NarrowItDownController (with controller as syntax)
+that will wrap your search textbox and button as well as the list of found items.-->
+
+<!--4. Declare and create MenuSearchService. -->
+<!--The service should have the following method: getMatchedMenuItems(searchTerm). -->
+<!--That method will be responsible for reaching out to the server (using the $http service) -->
+<!--to retrieve the list of all the menu items. Once it gets all the menu items, -->
+<!--it should loop through them to pick out the ones whose description matches the searchTerm. -->
+<!--Once a list of found items is compiled, it should return that list (wrapped in a promise). -->
+<!--Remember that the `then` function itself returns a promise. -->
+<!--Your method would roughly look like this:-->
+<!--```javascript-->
+<!--return $http(...).then(function (result) {-->
+<!--// process result and only keep items that match-->
+<!--var foundItems...-->
+
+<!--// return processed items-->
+<!--return foundItems;-->
+<!--});-->
+<!--```-->
+<!--The URL for the REST Endpoint is https://davids-restaurant.herokuapp.com/menu_items.json-->
+
+<!--5. The NarrowItDownController should be injected with the MenuSearchService. -->
+<!--The controller should call the getMatchedMenuItems method when appropriate -->
+<!--and store the result in a property called `found` attached to the controller instance.-->
+
+<!--6. Declare and create `foundItems` directive. The list should be displayed -->
+<!--using this `directive` which takes the `found` array of items specified on it -->
+<!--as an attribute (think one-way binding with '<'). -->
+<!--To implement the functionality of the "Don't want this one!" button, -->
+<!--the directive should also provide an on-remove attribute that will use function -->
+<!--reference binding to invoke the parent controller removal an item from the `found` array -->
+<!--based on an index into the `found` array. The index should be passed in from the directive -->
+<!--to the controller. -->
+<!--(Note that we implemented almost identical type of behavior in the Lecture 30 Part 2, -->
+<!--so as long as you understood that code, it should be very close to copy/paste). -->
+<!--In the NarrowItDownController, simply remove that item from the `found` array. -->
+<!--You can do that using the [Array's splice() method]-->
+<!--(https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice).-->
+<!--For example, to remove an item with the index of 3 from the `found` array, -->
+<!--you would call `found.splice(3, 1);`.-->
+
+<html lang="en" ng-app="NarrowItDownApp">
+  <head>
+    <title>Narrow Down Your Menu Choice</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/styles.css">
+  </head>
+<body>
+   <div class="container">
+    <h1>Narrow Down Your Chinese Menu Choice</h1>
+
+    <div class="form-group">
+      <input type="text" placeholder="search term" class="form-control">
+    </div>
+    <div class="form-group narrow-button">
+      <button class="btn btn-primary">Narrow It Down For Me!</button>
+    </div>
+
+    <!-- found-items should be implemented as a component -->
+    <found-items found-items="...." on-remove="...."></found-items>
+  </div>
+
+</body>
+</html>
